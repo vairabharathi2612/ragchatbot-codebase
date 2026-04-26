@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   loadCourseStats();
 });
 
+// Theme toggle
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+}
+
 // Event Listeners
 function setupEventListeners() {
   // Chat functionality
@@ -29,6 +37,7 @@ function setupEventListeners() {
     if (e.key === 'Enter') sendMessage();
   });
   document.getElementById('newChatBtn').addEventListener('click', createNewSession);
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
   // Suggested questions
   document.querySelectorAll('.suggested-item').forEach((button) => {
