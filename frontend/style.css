@@ -111,6 +111,25 @@ header h1 {
     margin-bottom: 0;
 }
 
+.new-chat-btn {
+    width: 100%;
+    padding: 0.5rem 0;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.new-chat-btn:hover {
+    color: var(--primary-color);
+}
+
 /* Main Chat Area */
 .chat-main {
     flex: 1;
@@ -241,8 +260,38 @@ header h1 {
 }
 
 .sources-content {
-    padding: 0 0.5rem 0.25rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.source-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--surface-hover);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    font-size: 0.7rem;
     color: var(--text-secondary);
+    white-space: nowrap;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+a.source-chip {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.source-chip:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
 }
 
 /* Markdown formatting styles */

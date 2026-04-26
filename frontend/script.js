@@ -28,6 +28,7 @@ function setupEventListeners() {
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
     });
+    document.getElementById('newChatBtn').addEventListener('click', createNewSession);
     
     
     // Suggested questions
@@ -122,10 +123,19 @@ function addMessage(content, type, sources = null, isWelcome = false) {
     let html = `<div class="message-content">${displayContent}</div>`;
     
     if (sources && sources.length > 0) {
+        const chips = sources.map(source => {
+            const parts = source.split('||');
+            const label = escapeHtml(parts[0]);
+            const icon = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+            if (parts.length === 2) {
+                return `<a class="source-chip" href="${escapeHtml(parts[1])}" target="_blank" rel="noopener noreferrer">${icon}${label}</a>`;
+            }
+            return `<span class="source-chip">${label}</span>`;
+        }).join('');
         html += `
             <details class="sources-collapsible">
                 <summary class="sources-header">Sources</summary>
-                <div class="sources-content">${sources.join(', ')}</div>
+                <div class="sources-content">${chips}</div>
             </details>
         `;
     }
